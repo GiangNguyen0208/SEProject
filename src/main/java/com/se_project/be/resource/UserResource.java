@@ -22,6 +22,7 @@ public class UserResource {
     @Autowired
     UserDAO userDAO;
 
+
     public ResponseEntity<CommonApiResponse> register(UserRequestDTO request) {
         CommonApiResponse response = new CommonApiResponse();
 
@@ -29,7 +30,6 @@ public class UserResource {
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
-
         userService.addUser(user);
 
         response.setMessage("User registered Successfully");
@@ -46,7 +46,6 @@ public class UserResource {
             response.setMessage("User was not register before. Pls register first !");
             response.setSuccess(false);
         } else {
-
             response.setMessage("User login Successfully");
             response.setSuccess(true);
         }

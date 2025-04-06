@@ -24,10 +24,6 @@ public class QuestionController {
         this.userQuestionService = userQuestionService;
         this.aiService = aiService;
     }
-    private String formatQuestion(String userInput) {
-        // Định dạng lại câu hỏi theo mẫu mong muốn
-        return "Câu hỏi được định dạng: " + userInput;
-    }
     @PostMapping("/ask")
     public ResponseEntity<UserQuestion> askQuestion(@RequestBody UserQuestionRequestDTO request) {
         UserQuestion userQuestion = userQuestionService.saveFormattedQuestion(request);
