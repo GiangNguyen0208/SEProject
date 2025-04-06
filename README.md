@@ -88,24 +88,29 @@ docker stop ollama_server
 * BE sẽ nhận Api request từ FE và tiếp tục call đến api của model để generate response về lại phía FE.
 
 * API request to model Ollama 
-``` api request to model Ollama
+```
 http://localhost:11434/api/generate
 ```
 
 * API request from FE
-``` api request from FE
+```
 {
   "model": "name_model",
   "prompt": "quetsion",
   "stream": false
 }
-// Ví dụ: 
+```
+* Ví dụ:
+```
 {
   "model": "llama3.2:1b",
   "prompt": "Why is the sky blue?",
   "stream": false
 }
-// Đây là 1 response mẫu khi model tiếp nhận request trên
+```
+
+* Đây là 1 response mẫu khi model tiếp nhận request trên
+``` 
 {
   "model": "llama3.2:1b",
   "created_at": "2025-03-23T03:43:58.156Z",
