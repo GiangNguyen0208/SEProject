@@ -53,3 +53,74 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
+```
+# 🤖 Hướng Dẫn Sử Dụng Ollama Server bằng Docker
+
+Tài liệu này hướng dẫn cách chạy **Ollama AI model** trên Docker và cách tương tác với API `generate`.
+
+---
+
+## 🚀 Bước 1: Khởi động Ollama lần đầu
+
+### Chạy lệnh sau trong terminal:
+
+```bash
+docker run --name ollama_server -p 11434:11434 ollama/ollama:latest
+docker exec -it ollama_server ollama run llama3.2:1b
+```
+
+### Lần Chạy Sau
+* Sau khi đã chạy thành công lần đầu, chỉ cần chạy lệnh sau:
+
+``` bash
+docker start ollama_server
+docker exec -it ollama_server ollama run llama3.2:1b
+```
+
+### Dừng Ollama Server
+* Khi không sử dụng nữa, dừng server bằng lệnh:
+
+``` bash
+docker stop ollama_server
+```
+
+### Payload request 
+* BE sẽ nhận Api request từ FE và tiếp tục call đến api của model để generate response về lại phía FE.
+
+* API request to model Ollama 
+``` api request to model Ollama
+http://localhost:11434/api/generate
+```
+
+* API request from FE
+``` api request from FE
+{
+  "model": "name_model",
+  "prompt": "quetsion",
+  "stream": false
+}
+// Ví dụ: 
+{
+  "model": "llama3.2:1b",
+  "prompt": "Why is the sky blue?",
+  "stream": false
+}
+// Đây là 1 response mẫu khi model tiếp nhận request trên
+{
+  "model": "llama3.2:1b",
+  "created_at": "2025-03-23T03:43:58.156Z",
+  "response": "The sky appears blue to us because of a phenomenon called Rayleigh scattering...",
+  "done": true,
+  "done_reason": "stop",
+  "context": [128006, 9125, 128007, ...],
+  "total_duration": 27529455478,
+  "load_duration": 11925463866,
+  "prompt_eval_count": 31,
+  "prompt_eval_duration": 2604000000,
+  "eval_count": 261,
+  "eval_duration": 12962000000
+}
+```
+
+
+
