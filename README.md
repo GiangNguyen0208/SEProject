@@ -58,6 +58,10 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
 Tài liệu này hướng dẫn cách chạy **Ollama AI model** trên Docker và cách tương tác với API `generate`.
 
+## Yêu cầu:
+    1. Download Docker cho máy tính cá nhân.
+    2. Thực hiện các tác vụ sau trên Window PowerShell.
+
 ---
 
 ## 🚀 Bước 1: Khởi động Ollama lần đầu
